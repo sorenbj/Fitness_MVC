@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <img src="~/Pics/frontcover.jpg" alt="fitness girl" class="img-responsive front" />
+</div>
+
+<div class="row">
+    <h2 class="text-center headline"><strong>Our activities</strong></h2>
+        @foreach (var activity in ViewBag.activities)
+        {
+            <div class="col-md-4 pic">
+                <img src="~/Pics/Activities/@activity.PictureFilename" alt="Picture of @activity.Name" class="img-responsive" />
+                <h3>@activity.Name</h3>
+                <p>@activity.Description</p>
+            </div>
+        }
+</div>
+</div>
+<div class="row gray">
+    <div class="container">
+        @foreach (var s in ViewBag.sponsers)
+        {
+            <div class="col-md-2">
+                <a href="@s.Website">
+                    <img src="~/Pics/sponsor/@s.Picture" alt="@s.Company logo" class="img-responsive" />
+                </a>
+            </div>
+        }
+    </div>
+</div>

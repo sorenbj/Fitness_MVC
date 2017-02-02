@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MVCFitnessApp.Models.Activity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Activities</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h3>Create new Activity</h3>
+        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+        <hr />
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("searchString")
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
+}
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PictureFilename)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <img src="~/Pics/Activities/@Html.DisplayFor(modelItem => item.PictureFilename)"
+                 alt="@Html.DisplayFor(modelItem => item.Name) + picture"
+                 style="max-width:70px; max-height:70px;" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityID }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.ActivityID }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.ActivityID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

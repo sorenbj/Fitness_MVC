@@ -1,0 +1,103 @@
+﻿@model MVCFitnessApp.Models.Coach
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Coach", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Coach</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CoachID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (Model.FilePaths.Any(f => f.FileType == "Photo"))
+        {
+            <div class="form-group">
+                <span class="control-label col-md-2"><strong>Current Photo</strong></span>
+                <div class="col-md-10">
+                    <img src="~/pics/Coach/@Model.FilePaths.First(f => f.FileType == "Photo").FileName" alt="Coach Photo" />
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.Label("Change Photo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="CoachPhoto" name="upload" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Coach on", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<MVCFitnessApp.ViewModels.AssignedActivityData> activities = ViewBag.Activities;
+
+                            foreach (var activity in activities)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedActivities"
+                                           value="@activity.ActivityID"
+                                           @(Html.Raw(activity.Assigned ? "checked=\"checked\"" : "")) />
+                                    @activity.Name
+                                    @:</td>
+                            }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

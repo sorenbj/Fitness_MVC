@@ -1,0 +1,83 @@
+﻿@model MVCFitnessApp.ViewModels.MemberIndexData
+
+@{
+    ViewBag.Title = "Members";
+}
+
+<h2>Members</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h3>Create new Member</h3>
+        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+        <hr />
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Enrollment Date</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Members)
+    {
+        string selectedRow = "";
+        if (item.MemberID == ViewBag.MemberID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.MemberID }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.MemberID }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.MemberID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Activities != null)
+{
+    <h3>Activity Enrollments</h3>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+
+            @foreach (var item in Model.Activities)
+            {
+                string selectedRow = "";
+                if (item.ActivityID == ViewBag.ActivityID)
+                {
+                    selectedRow = "success";
+                }
+                <tr class="@selectedRow">
+                    
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Description
+                        </td>
+                    </tr>
+                </tr>          
+            }
+    </table>
+}

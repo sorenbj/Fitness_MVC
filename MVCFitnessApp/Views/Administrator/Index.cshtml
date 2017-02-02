@@ -1,0 +1,14 @@
+﻿@model MVCFitnessApp.Models.AdminUsersManageModel
+
+@{
+    ViewBag.Title = "Manage Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<p class="text-error">@ViewBag.ErrorMessage</p>
+
+<div>
+    @{Html.RenderPartial("ShowUsersDetails");}
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model MVCFitnessApp.Models.Coach
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+
+        @if (Model.FilePaths.Any(f => f.FileType == "Photo"))
+        {
+            <dt>
+                Photo
+            </dt>
+            <dd>
+                <img src="~/pics/Coach/@Model.FilePaths.First(f => f.FileType == "Photo").FileName" alt="Coach Photo" />
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CoachID }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

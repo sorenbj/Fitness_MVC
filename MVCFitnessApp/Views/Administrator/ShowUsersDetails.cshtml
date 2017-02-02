@@ -1,0 +1,49 @@
+﻿@model MVCFitnessApp.Models.AdminUsersManageModel
+@using MVCFitnessApp.Controllers
+@using System.Globalization
+
+<h2>Show User Details</h2>
+
+<table class="table table-striped table-bordered">
+    @{ 
+        //we will display total users number above the table
+        var totalUsers = AdministratorController.usersList.ToList().Count();
+        int num = 0;
+    }
+
+    <tr>
+        <td colspan="4" style="border-top:none;">Total user : @totalUsers</td>
+    </tr>
+    @*column headers*@
+    <tr>
+        <th>&#9830;</th>
+        <th>User Full Name</th>
+        <th>Role</th>
+        <th>Edit</th>
+    </tr>
+
+    
+    @foreach(var usr in AdministratorController.usersList)
+    {
+        //foreach user we display number username rolename
+        ViewBag.UserName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usr.UserName);
+        ViewBag.UserFullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usr.UserFullName);
+        num++;
+        <tr>
+            <td>@num</td>
+            <td title="@ViewBag.UserName">@ViewBag.UserFullName</td>
+            <td>@usr.RoleName</td>
+            <td>
+                @using (Html.BeginForm("EditUser", "Administrator", FormMethod.Post, new { @role = "form" }))
+                {
+                    //we add submitbtn and pass users id to EditUser post method
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Id" value="@usr.UserId" />
+                    <input type="submit" class="btn btn-success" value="Edit" />
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

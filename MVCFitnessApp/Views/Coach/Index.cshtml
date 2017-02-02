@@ -1,0 +1,114 @@
+﻿@model MVCFitnessApp.ViewModels.CoachIndexData
+
+@{
+    ViewBag.Title = "Coaches";
+}
+
+<h2>Coaches</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h3>Create new Coach</h3>
+        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+        <hr />
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Hire Date</th>
+        <th>Activities</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Coachs)
+    {
+        string selectedRow = "";
+        if (item.CoachID == ViewBag.CoachID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </td>
+            <td>
+                @{
+                    foreach (var activity in item.Activities)
+                    {
+                        @activity.Name <br />
+                    }
+                }
+            </td>
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.CoachID }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.CoachID }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.CoachID }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.CoachID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Activities != null)
+{
+    <h3>Coach on Activities</h3>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th></th>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+
+        @foreach (var item in Model.Activities)
+        {
+            string selectedRow = "";
+            if (item.ActivityID == ViewBag.ActivityID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { activityID = item.ActivityID }, new { @class = "btn btn-default" })
+                </td>
+                <td>
+                    @item.ActivityID
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+            </tr>
+        }
+    </table>
+}
+@if (Model.Members != null)
+{
+    <h3>Members Enrolled</h3>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>Name</th>
+        </tr>
+        @foreach (var item in Model.Members)
+        {
+            <tr>
+                <td>
+                    @item.FullName
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DeleteUser</h2>
+
+@using (Html.BeginForm("DeleteUser", "Administrator", FormMethod.Post, new { @role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    //we give the admin to choose to delete user or cancel
+    <div class="form-group">
+        <div>Are you sure you want to <i>Delete User</i></div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete User" class="btn btn-danger" /> 
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cancel" class="btn btn-warning" style="float:left" onclick="location.href='@Url.Action("EditUser", "Administrator")'" />
+        </div>
+    </div>
+}
+

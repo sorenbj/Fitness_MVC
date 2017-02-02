@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sponsors>
+  <sponsor>
+    <id>1</id>
+    <company>High 5</company>
+    <website>www.high5.com</website>
+    <picture>high5.png</picture>
+  </sponsor>
+  <sponsor>
+    <id>2</id>
+    <company>Nike</company>
+    <website>www.nike.com</website>
+    <picture>nike.png</picture>
+  </sponsor>
+  <sponsor>
+    <id>3</id>
+    <company>Salomon</company>
+    <website>www.salomon-sports.com</website>
+    <picture>salomon.png</picture>
+  </sponsor>
+  <sponsor>
+    <id>4</id>
+    <company>Under Armour</company>
+    <website>www.underarmour.com</website>
+    <picture>underarmour.png</picture>
+  </sponsor>
+  <sponsor>
+    <id>5</id>
+    <company>Gatorade</company>
+    <website>www.gatorade.com</website>
+    <picture>gatorade.png</picture>
+  </sponsor>
+  <sponsor>
+    <id>6</id>
+    <company>Urtekram</company>
+    <website>www.urtekram.dk</website>
+    <picture>urtekram.png</picture>
+  </sponsor>
+</sponsors>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<div class="row">
+    <div class="col-sm-12 col-lg-6">
+        <h2>Adress</h2>
+        <address>
+            Fitness Center<br />
+            Nørgaardsvej 30<br />
+            <abbr title="Phone">P:</abbr>
+            +45 36 15 47 48
+        </address>
+        <address>
+            <strong>Support:</strong>   <a href="mailto:Support@fitnesscenter.com">Support@fitnesscenter.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@fitnesscenter.com">Marketing@fitnesscenter.com</a>
+        </address>
+    </div>
+    <div class="col-sm-12 col-lg-6">
+        <h2>Write a message</h2>
+        <form>
+            <div class="form-group">
+                <label for="InputName1">Name</label>
+                <input type="text" class="form-control" id="InputName1" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="InputEmail1">Email address</label>
+                <input type="email" class="form-control" id="InputEmail1" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+                <label for="InputEmailTitle1">Title</label>
+                <input type="text" class="form-control" id="InputEmailTitle1" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="InputMessage1">Message</label>
+                <textarea class="form-control" rows="6" id="InputMessage1"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Send</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Find us here</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.3451569309423!2d12.510056251504848!3d55.76987699804698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46524e6d834f9cf1%3A0x4408391a0bb4d749!2sN%C3%B8rgaardsvej+30%2C+2800+Kongens+Lyngby!5e0!3m2!1sda!2sdk!4v1461144191548" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</div>

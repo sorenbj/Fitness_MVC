@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<MVCFitnessApp.Models.Sponsor>
+
+
+<h1>Sponsors Index Page</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h3>Create new sponsor</h3>
+        @Html.ActionLink("Create new sponsor", "Create", null, new { @class = "btn btn-primary" })
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Our sponsors (from xml)</h3>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Edit</th>
+                <th>#</th>
+                <th>Company</th>
+                <th>Website</th>
+                <th>Picture</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Website)
+                    </td>
+                    <td>
+                
+                        <img src="~/Pics/sponsor/@Html.DisplayFor(modelItem => item.Picture)" 
+                             alt="@Html.DisplayFor(modelItem => item.Company) + logo"
+                             style="max-width:70px; max-height:70px;" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })                       
+                        
+                    </td>
+                </tr>
+            }
+        </table>  
+    </div>
+</div>
